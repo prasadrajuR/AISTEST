@@ -21,7 +21,11 @@ steps:
   inputs:
         provider: 'azurerm'
         command: 'init'
-        commandOptions: '-backend=false'    
+        backendServiceArm: 'Azure-Terraform-connection'
+        backendAzureRmResourceGroupName: 'DestinationRG'
+        backendAzureRmStorageAccountName: 'prasadrajuterraformstate'
+        backendAzureRmContainerName: 'tfstate'
+        backendAzureRmKey: 'terraform.tfstate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
 
 - task: TerraformTask@5

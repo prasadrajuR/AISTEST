@@ -1,15 +1,5 @@
 terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "~> 4.0"
-    }
-    azapi = {
-      source = "azure/azapi"
-      version = "~> 2.0"
-    }
-  }
-  backend "azurerm" {
+   backend "azurerm" {
     resource_group_name  = "DestinationRG"
     storage_account_name = "prasadrajuterraformstate"
     container_name       = "tfstate"

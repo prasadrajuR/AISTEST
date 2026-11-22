@@ -22,7 +22,7 @@ resource "azapi_resource" "logicapp" {
     location = data.azurerm_resource_group.destination.location
     body = {
         properties = {
-            definition = jsoncode(file("${path.module}/../workflow.json"))
+            definition = jsondecode(file("${path.module}/../workflow.json"))
             state = "disabled"  
         }
 

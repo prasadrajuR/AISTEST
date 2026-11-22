@@ -8,14 +8,17 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
+variables:
+ terraformversion: '1.11.3'
+ workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
 
 steps:
 
 - task: TerraformInstaller@1
   inputs:
-    terraformVersion: '1.7.2'
+    terraformVersion: '$(terraformversion)'
 
 - task: TerraformTask@5
   inputs:

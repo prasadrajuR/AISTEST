@@ -21,7 +21,7 @@ steps:
   inputs:
         provider: 'azurerm'
         command: 'init'
-        backendServiceArm: 'Azure-Terraform-connection'        
+        commandOptions: '-backend=false'    
         workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
 
 - task: TerraformTask@5

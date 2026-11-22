@@ -1,3 +1,28 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+    azapi = {
+      source = "azure/azapi"
+      version = "~> 2.0"
+    }
+  }
+  backend "azurerm" {
+    resource_group_name  = "DestinationRG"
+    storage_account_name = "prasadrajuterraformstate"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
+}
+
+provider "azurerm" {
+  features {}
+  subscription_id = "f3e5c1d0-2b4a-4c8e-9f3b-1a2b3c4d5e6f"
+}
+
+
 data "azurerm_resource_group" "destination" {
   name                = "DestinationRG"
   

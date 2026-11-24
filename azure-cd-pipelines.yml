@@ -25,6 +25,7 @@ steps:
 
 - script: |
     echo "checking downloaded ci artifacts".
+    ls -la "$(Pipeline.Workspace)/ci/drop"
     echo "artifact directory"
     find "$(Pipeline.Workspace)/ci/drop" -type f
   displayName: 'Verify CI Artifacts'
@@ -35,10 +36,10 @@ steps:
 
 - script : |
     echo "checking download artifact"
-    ls -l "$(Pipeline.Workspace)/ci/drop"
+    ls -la "$(Pipeline.Workspace)/ci/drop"
     echo "finding terraform files"
-    find "$(Pipeline.Workspace)/ci/drop" -type f -name '*.tf'
-  displayName: 'verify terraform files'  
+    find "$(Pipeline.Workspace)/ci/drop"  -name "*.tf"
+  displayName: 'verify CI Artifact'  
 
 
 

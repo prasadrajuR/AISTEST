@@ -31,7 +31,13 @@ steps:
 
 - task: TerraformInstaller@1
   inputs:
-    terraformVersion: 'latest'
+    terraformVersion: '1.9.8'
+
+- script : |
+    terraform version
+    which terraform
+    ls -la $(which terraform)
+    displayName: 'check terraform installlation'     
 
 - task: TerraformTask@5
   inputs:

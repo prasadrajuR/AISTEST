@@ -54,7 +54,7 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/Terraform' # Path to the file or folder you want to upload
+    targetPath: '$(Build.SourcesDirectory)' # Path to the file or folder you want to upload
     artifact: 'drop'                               # Name of the artifact
     publishLocation: 'pipeline'                    # 'pipeline' (Azure DevOps) or 'filepath' (file share)
  

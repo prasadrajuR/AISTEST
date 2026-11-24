@@ -34,10 +34,11 @@ steps:
     terraformVersion: '1.9.8'
 
 - script : |
+    echo "checking terraform ececutable".
     terraform version
     which terraform
-    ls -la $(which terraform)
-  displayName: 'check terraform installlation'     
+    ls -l /opt/hostedtoolcache/terraform/1.9.8/x64/terraform
+  displayName: 'check terraform executable'     
 
 - task: TerraformTask@5
   inputs:

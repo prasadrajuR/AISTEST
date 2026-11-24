@@ -44,11 +44,17 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'
 
-
+- script: |
+    echo "checking source directory"
+    echo "$(Build.SourcesDirectory)"
+    echo "checking Terraform folder"
+    ls -la "$(Build.SourcesDirectory)"
+    echo "searching terradform files"
+    find "$(Build.SourcesDirectory)" -name "*.tf"
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourceDirectory)/Terraform' # Path to the file or folder you want to upload
+    targetPath: '$(Build.SourcesDirectory)/Terraform' # Path to the file or folder you want to upload
     artifact: 'drop'                               # Name of the artifact
     publishLocation: 'pipeline'                    # 'pipeline' (Azure DevOps) or 'filepath' (file share)
  

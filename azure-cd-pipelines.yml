@@ -37,7 +37,7 @@ steps:
     terraform version
     which terraform
     ls -la $(which terraform)
-    displayName: 'check terraform installlation'     
+  displayName: 'check terraform installlation'     
 
 - task: TerraformTask@5
   inputs:

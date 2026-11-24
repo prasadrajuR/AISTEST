@@ -37,7 +37,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop'
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform'
     backendServiceArm: 'Azure-Terraform-connection'
     backendAzureRmResourceGroupName: 'DestinationRG'
     backendAzureRmStorageAccountName: 'prasadrajuterraformstate'
@@ -48,5 +48,5 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop'
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'

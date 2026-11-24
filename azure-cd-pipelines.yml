@@ -71,7 +71,7 @@ steps:
       terraform validate
       echo "Terraform Plan"
       terraform plan -out=tfplan
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop' 
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform' 
 
 
 

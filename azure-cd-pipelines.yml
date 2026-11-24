@@ -50,6 +50,7 @@ steps:
     backendAzureRmStorageAccountName: 'prasadrajuterraformstate'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'terraform.tfstate'
+    commandOptions: '-reconfigure'
 
 - task: TerraformTask@5
   inputs:

@@ -37,7 +37,7 @@ steps:
     echo "checking download artifact"
     ls -l "$(Pipeline.Workspace)/ci/drop"
     echo "finding terraform files"
-    find "$(Pipeline.Workspace)/ci/drop" -name
+    find "$(Pipeline.Workspace)/ci/drop" -type f -name '*.tf'
   displayName: 'verify terraform files'     
 
 - task: TerraformTask@5

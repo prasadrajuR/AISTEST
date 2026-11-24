@@ -79,5 +79,5 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop'
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'

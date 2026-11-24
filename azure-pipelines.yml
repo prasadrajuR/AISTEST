@@ -44,6 +44,10 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'
 
+- script:  |
+    rm -rf "$(System.DefaultWorkingDirectory)/Terraform/.terraform"
+    echo "Terraform Provider cache cleaned successfully"
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(System.DefaultWorkingDirectory)/Terraform' # Path to the file or folder you want to upload

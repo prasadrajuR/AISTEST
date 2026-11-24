@@ -3,17 +3,50 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+trigger : none
+
+resources : 
+  pipelines:
+   - pipeline: ci
+     source: 'prasadrajuR.AISTEST'
+     trigger:
+      branches:
+       include:
+         - main
 
 pool:
   vmImage: ubuntu-latest
 
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- download:  ci
+  artifact: drop
+
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo "checking downloaded ci artifacts".
+    echo "artifact directory"
+    find "$(Pipeline.Workspace)/ci/drop" -type f
+  displayName: 'Verify CI Artifacts'
+
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(Pipeline.Workspace)/Terraform'
+    backendServiceArm: 'Azure-Terraform-connection'
+    backendAzureRmResourceGroupName: 'DestinationRG'
+    backendAzureRmStorageAccountName: 'prasadrajuterraformstate'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(Pipeline.Workspace)/Terraform'
+    environmentServiceNameAzureRM: 'Azure-Terraform-connection'

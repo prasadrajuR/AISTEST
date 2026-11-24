@@ -34,17 +34,17 @@ steps:
     terraformVersion: '1.9.8'
 
 - script : |
-    echo "checking terraform ececutable".
-    terraform version
-    which terraform
-    ls -l /opt/hostedtoolcache/terraform/1.9.8/x64/terraform
-  displayName: 'check terraform executable'     
+    echo "checking download artifact"
+    ls -l "$(Pipeline.Workspace)/ci/drop"
+    echo "finding terraform files"
+    find "$(Pipeline.Workspace)/ci/drop" -name
+  displayName: 'verify terraform files'     
 
 - task: TerraformTask@5
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform'
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop'
     backendServiceArm: 'Azure-Terraform-connection'
     backendAzureRmResourceGroupName: 'DestinationRG'
     backendAzureRmStorageAccountName: 'prasadrajuterraformstate'
@@ -55,5 +55,5 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '$(Pipeline.Workspace)/ci/drop/Terraform'
+    workingDirectory: '$(Pipeline.Workspace)/ci/drop'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'

@@ -62,6 +62,8 @@ steps:
       test -n "$ARM_OIDC_TOKEN"
       test -n "$ARM_TENANT_ID"
       test -n "$ARM_SUBSCRIPTION_ID"
+      echo "cleaning previous Terraform Providers"
+      rm -rf .terraform
       echo "Terraform InIt"
       terraform init -reconfigure
       echo "Terraform validate"

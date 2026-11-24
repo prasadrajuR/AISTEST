@@ -27,7 +27,7 @@ resource "azapi_resource" "logicapp" {
         properties = {
             definition = jsondecode(file("${path.module}/../workflow.json")).definition
             parameters = jsondecode(file("${path.module}/../workflow.json")).parameters
-            state = "Disabled"  
+            state = "Enabled"  
         }
 
     }

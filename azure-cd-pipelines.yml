@@ -55,8 +55,13 @@ steps:
       export ARM_USE_AZUREAD=true
       export ARM_CLIENT_ID="$servicePrincipalId"
       export ARM_OIDC_TOKEN="$idToken"
-      export ARM_TENANT_ID="$(az account show --query tenantid -o tsv)"
+      export ARM_TENANT_ID="$tenantId"
       export ARM_SUBSCRIPTION_ID="$(az account show --query id -o tsv)"   
+      echo "checking Terraform Authentication"
+      test -n "$ARM_CLIENT_ID"
+      test -n "$ARM_OIDC_TOKEN"
+      test -n "$ARM_TENANT_ID"
+      test -n "$ARM_SUBSCRIPTION_ID"
       echo "Terraform InIt"
       terraform init -reconfigure
       echo "Terraform validate"

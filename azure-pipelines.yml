@@ -43,3 +43,10 @@ steps:
     command: 'plan'
     workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
     environmentServiceNameAzureRM: 'Azure-Terraform-connection'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)' # Path to the file or folder you want to upload
+    artifact: 'drop'                               # Name of the artifact
+    publishLocation: 'pipeline'                    # 'pipeline' (Azure DevOps) or 'filepath' (file share)
+ 
